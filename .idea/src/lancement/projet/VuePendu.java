@@ -1,27 +1,35 @@
 package lancement.projet;
 
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VuePendu extends JFrame {
-    public JeuPendu jeuPendu = new JeuPendu();
-    public JLabel etatMotLabel = new JLabel("Mot à deviner : " + jeuPendu.getEtatMot());
-    public JLabel tentativesLabel = new JLabel("Tentatives restantes : " + jeuPendu.getTentativesRestantes());
-    private JButton soumettreBouton = new JButton("Proposer"); // Déplacé pour être un champ de classe
-    private JTextField lettreTextField = new JTextField(1); // Déplacé pour être un champ de classe
-    private JLabel definitionLabel;
+    private JeuPendu jeuPendu = new JeuPendu();
+    private JLabel etatMotLabel = new JLabel("Mot à deviner : " + jeuPendu.getEtatMot());
+    private JLabel tentativesLabel = new JLabel("Tentatives restantes : " + jeuPendu.getTentativesRestantes());
+    private JButton soumettreBouton = new JButton("Proposer");
+    private JTextField lettreTextField = new JTextField(); // La largeur sera définie par le DocumentFilter
+    private JLabel definitionLabel = new JLabel(); // Initialement vide, à définir après la création de l'objet VuePendu
 
     public VuePendu() {
         setTitle("Jeu du Pendu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        add(etatMotLabel);
-        add(tentativesLabel);
-
-        JTextField lettreTextField = new JTextField(1); // Largeur de 1 colonne.
-        JButton soumettreBouton = new JButton("Proposer");
+        // DocumentFilter pour restreindre la saisie à une seule lettre
+        ((AbstractDocument) lettreTextField.getDocument()).setDocumentFilter(new DocumentFilter() {
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                text = text.toUpperCase();
+                super.replace(fb, 0, fb.getDocument().getLength(), text.matches("[A-Z]") ? text : "", attrs);
+            }
+        });
+        lettreTextField.setColumns(1); // Définir la largeur à une colonne pour une lettre
 
         soumettreBouton.addActionListener(new ActionListener() {
             @Override
@@ -30,21 +38,17 @@ public class VuePendu extends JFrame {
             }
         });
 
+        // Ajoutez les composants à l'interface utilisateur
+        add(etatMotLabel);
         add(lettreTextField);
-        add(Box.createVerticalStrut(10)); // Ajoute un espace vertical
         add(soumettreBouton);
+        add(tentativesLabel);
+        add(Box.createVerticalStrut(10)); // Ajoute un espace vertical
+        add(definitionLabel); // Ajouter le label pour la définition
 
         pack(); // Dimensionne le cadre.
         setLocationRelativeTo(null); // Centre la fenêtre à l'écran.
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VuePendu();
-            }
-        });
     }
 
     public JButton getProposerBouton() {
