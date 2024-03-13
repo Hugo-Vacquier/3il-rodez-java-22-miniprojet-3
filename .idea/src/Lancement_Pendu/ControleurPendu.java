@@ -1,3 +1,5 @@
+package Lancement_Pendu;
+
 import javax.swing.*;
 
 public class ControleurPendu {
