@@ -1,4 +1,4 @@
-package pendu.lancement;
+package pendu;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
