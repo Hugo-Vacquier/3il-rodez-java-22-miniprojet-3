@@ -1,0 +1,18 @@
+Classe JeuPendu :
+J'ai utiliser 2 listes parallèles pour stocker le mot et dans l'autre la définition du mot
+
+ChargerMots charge a partir d'un fichier texte mots avec un scanner pour lire les lignes et sélectionner les définitions
+
+Choisir mot fait la même chose mais utilise un random pour sélectionner le mot du jeu
+
+
+Controleur Pendu
+initialise la vue
+
+a une méthode soumettreLettre pour traiter les entrées dans le jeu
+
+
+Classe VuePendu
+Déclarations des différents composants
+
+un bouton rejouer avec un affichage dynamique du jeu qui met à jour les labels en fonction de la lettre proposé
