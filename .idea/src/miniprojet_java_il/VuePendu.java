@@ -41,4 +41,26 @@ public class VuePendu extends JFrame {
             }
         });
     }
+
+    public JButton getProposerBouton() {
+        return soumettreBouton;
+    }
+
+    public JTextField getLettreTextField() {
+        return lettreTextField;
+    }
+
+    public JLabel getEtatMotLabel() {
+        return etatMotLabel;
+    }
+
+    public JLabel getTentativesLabel() {
+        return tentativesLabel;
+    }
+
+    public JLabel getDefinitionLabel() {
+        // Vous devrez ajouter ce label à votre vue pour afficher la définition
+        return definitionLabel;
+    }
+
 }
