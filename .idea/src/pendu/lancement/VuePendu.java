@@ -1,13 +1,16 @@
-package Lancement_Pendu;
+package pendu.lancement;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VuePendu extends JFrame {
-    private JeuPendu jeuPendu = new JeuPendu();
-    private JLabel etatMotLabel = new JLabel("Mot à deviner : " + jeuPendu.getEtatMot());
-    private JLabel tentativesLabel = new JLabel("Tentatives restantes : " + jeuPendu.getTentativesRestantes());
+    public JeuPendu jeuPendu = new JeuPendu();
+    public JLabel etatMotLabel = new JLabel("Mot à deviner : " + jeuPendu.getEtatMot());
+    public JLabel tentativesLabel = new JLabel("Tentatives restantes : " + jeuPendu.getTentativesRestantes());
+    private JButton soumettreBouton = new JButton("Proposer"); // Déplacé pour être un champ de classe
+    private JTextField lettreTextField = new JTextField(1); // Déplacé pour être un champ de classe
+    private JLabel definitionLabel;
 
     public VuePendu() {
         setTitle("Jeu du Pendu");

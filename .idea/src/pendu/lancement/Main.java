@@ -1,4 +1,6 @@
-package Lancement_Pendu;
+package pendu.lancement;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,10 +1,12 @@
-package Lancement_Pendu;
+package pendu.lancement;
 
 import javax.swing.*;
 
 public class ControleurPendu {
-    private JeuPendu jeu;
-    private VuePendu vue;
+
+
+    private final JeuPendu jeu;
+    private final VuePendu vue;
 
     public ControleurPendu(JeuPendu jeu, VuePendu vue) {
         this.jeu = jeu;
@@ -34,5 +36,7 @@ public class ControleurPendu {
             JOptionPane.showMessageDialog(vue, "Veuillez entrer une lettre valide de l'alphabet.", "Entrée invalide", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
 
 }

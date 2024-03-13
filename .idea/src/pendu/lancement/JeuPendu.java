@@ -1,4 +1,4 @@
-package Lancement_Pendu;
+package pendu.lancement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +82,15 @@ public class JeuPendu {
     public void recommencerPartie() {
         choisirMot();
     }
+
+    public String getDefinitionMotActuel() {
+        return "";
+    }
+
+    public String getMotActuel() {
+        return "";
+    }
+
 
     // Getters et Setters supplémentaires au besoin
 }
