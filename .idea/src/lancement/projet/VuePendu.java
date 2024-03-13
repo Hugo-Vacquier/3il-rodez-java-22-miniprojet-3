@@ -15,8 +15,8 @@ public class VuePendu extends JFrame {
     private JButton soumettreBouton = new JButton("Proposer");
     private JTextField lettreTextField = new JTextField(); // La largeur sera définie par le DocumentFilter
     private JLabel definitionLabel = new JLabel(); // Initialement vide, à définir après la création de l'objet VuePendu
-
-    public VuePendu() {
+    private JButton rejouerBouton = new JButton("Rejouer");
+    public VuePendu(JeuPendu jeu) {
         setTitle("Jeu du Pendu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -46,9 +46,26 @@ public class VuePendu extends JFrame {
         add(Box.createVerticalStrut(10)); // Ajoute un espace vertical
         add(definitionLabel); // Ajouter le label pour la définition
 
+        rejouerBouton.addActionListener(e -> {
+            jeu.recommencerPartie();
+            etatMotLabel.setText("Mot à deviner : " + jeu.getEtatMot());
+            tentativesLabel.setText("Tentatives restantes : " + jeu.getTentativesRestantes());
+            rejouerBouton.setVisible(false); // Rendre le bouton Rejouer invisible après le début d'une nouvelle partie
+            soumettreBouton.setEnabled(true); // Réactiver le bouton Proposer
+        });
+        rejouerBouton.setVisible(false); // Le bouton est invisible au début
+        add(rejouerBouton);
+
         pack(); // Dimensionne le cadre.
         setLocationRelativeTo(null); // Centre la fenêtre à l'écran.
         setVisible(true);
+    }
+
+    public void rejouerPartie() {
+        /*jeu.recommencerPartie();
+        etatMotLabel.setText("Mot à deviner : " + jeu.getEtatMot());
+        tentativesLabel.setText("Tentatives restantes : " + jeu.getTentativesRestantes());
+        rejouerBouton.setVisible(false); // Rendre le bouton Rejouer invisible après le début d'une nouvelle partie*/
     }
 
     public JButton getProposerBouton() {
@@ -71,5 +88,10 @@ public class VuePendu extends JFrame {
         // Vous devrez ajouter ce label à votre vue pour afficher la définition
         return definitionLabel;
     }
+
+    public JButton getRejouerBouton() {
+        return rejouerBouton;
+    }
+
 
 }

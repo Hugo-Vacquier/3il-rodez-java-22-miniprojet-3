@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class JeuPendu {
     private List<String> mots = new ArrayList<>();
+    private List<String> definitions = new ArrayList<>();
     private String motActuel;
     private StringBuilder etatMot;
     private List<Character> lettresProposees = new ArrayList<>();
@@ -26,14 +27,22 @@ public class JeuPendu {
             Scanner scanner = new Scanner(fichier);
             while (scanner.hasNextLine()) {
                 String ligne = scanner.nextLine();
-                mots.add(ligne.split(" ")[0]); // Assurez-vous que votre fichier est correctement formaté
-                // Pour gérer les définitions, vous pouvez stocker les mots et définitions dans une structure plus complexe
+                String[] partie = ligne.split(" ", 2); // Sépare la ligne en deux parties à partir du premier espace
+                if (partie.length > 1) { // S'assurer que la ligne contient bien deux parties
+                    mots.add(partie[0]); // Ajoute le mot à la liste des mots
+                    definitions.add(partie[1]); // Ajoute la définition à la liste des définitions
+                } else {
+                    mots.add(partie[0]); // Ajoute le mot
+                    definitions.add(""); // Ajoute une chaîne vide si la définition est absente
+                }
             }
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println("Le fichier 'mots.txt' n'a pas été trouvé.");
         }
     }
+
 
     private void choisirMot() {
         Random random = new Random();
@@ -81,14 +90,16 @@ public class JeuPendu {
     // Utilisez cette méthode pour recommencer une partie
     public void recommencerPartie() {
         choisirMot();
+
     }
 
     public String getDefinitionMotActuel() {
-        return "";
+        // Assurez-vous que l'index est le même que celui utilisé pour choisir le mot actuel.
+        return definitions.get(mots.indexOf(motActuel));
     }
 
     public String getMotActuel() {
-        return "";
+        return motActuel;
     }
 
 

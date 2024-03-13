@@ -29,8 +29,12 @@ public class ControleurPendu {
 
             if (jeu.estGagne()) {
                 JOptionPane.showMessageDialog(vue, "Félicitations, vous avez gagné!");
+                vue.getRejouerBouton().setVisible(true); // Afficher le bouton Rejouer
+                vue.getProposerBouton().setEnabled(false); // Désactiver le bouton Proposer
             } else if (jeu.estPerdu()) {
                 JOptionPane.showMessageDialog(vue, "Dommage, vous avez perdu! Le mot était : " + jeu.getMotActuel());
+                vue.getRejouerBouton().setVisible(true); // Afficher le bouton Rejouer
+                vue.getProposerBouton().setEnabled(false); // Désactiver le bouton Proposer
             }
         } else {
             JOptionPane.showMessageDialog(vue, "Veuillez entrer une lettre valide de l'alphabet.", "Entrée invalide", JOptionPane.ERROR_MESSAGE);
